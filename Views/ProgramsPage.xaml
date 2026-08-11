@@ -1,0 +1,64 @@
+<Page x:Class="AynanayUninstaller.Views.ProgramsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Programs"
+      Background="{StaticResource BackgroundBrush}"
+      Foreground="{StaticResource WhiteBrush}">
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Text="Installed Programs" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" />
+
+        <!-- Search Bar -->
+        <TextBox Grid.Row="1" 
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                 Placeholder="Search installed programs..."
+                 Padding="10"
+                 Height="35"
+                 Background="{StaticResource CardBrush}"
+                 Foreground="{StaticResource WhiteBrush}"
+                 Margin="0,0,0,10" />
+
+        <!-- Programs DataGrid -->
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding Programs}"
+                  Background="{StaticResource CardBrush}"
+                  RowBackground="{StaticResource CardBrush}"
+                  AlternatingRowBackground="{StaticResource SecondaryCardColor}"
+                  Foreground="{StaticResource WhiteBrush}"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding DisplayName}" Width="250" />
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="200" />
+                <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="100" />
+                <DataGridTextColumn Header="Size" Binding="{Binding SizeFormatted}" Width="100" />
+                <DataGridTextColumn Header="Install Date" Binding="{Binding InstallDateFormatted}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Uninstall" 
+                    Command="{Binding UninstallCommand}"
+                    Padding="15,10"
+                    Margin="0,0,10,0"
+                    Background="{StaticResource PrimaryRedBrush}" />
+            <Button Content="Forced Uninstall" 
+                    Padding="15,10"
+                    Background="{StaticResource DangerRedBrush}" />
+            <Button Content="Residual Scan" 
+                    Padding="15,10"
+                    Margin="10,0,0,0"
+                    Background="{StaticResource WarningBrush}" />
+        </StackPanel>
+    </Grid>
+</Page>

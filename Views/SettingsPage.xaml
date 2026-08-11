@@ -1,0 +1,50 @@
+<Page x:Class="AynanayUninstaller.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Settings"
+      Background="{StaticResource BackgroundBrush}"
+      Foreground="{StaticResource WhiteBrush}">
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Settings" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
+
+        <!-- Language Selection -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <TextBlock Text="Language" FontWeight="Bold" Margin="0,0,0,10" />
+            <ComboBox ItemsSource="{Binding AvailableLanguages}" 
+                      SelectedItem="{Binding SelectedLanguage}"
+                      Padding="10"
+                      Height="35"
+                      Background="{StaticResource CardBrush}"
+                      Foreground="{StaticResource WhiteBrush}" />
+        </StackPanel>
+
+        <!-- Auto Update -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,20">
+            <CheckBox Content="Auto Update" 
+                      IsChecked="{Binding AutoUpdate}"
+                      Foreground="{StaticResource WhiteBrush}" />
+        </StackPanel>
+
+        <!-- Create Restore Point -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,20">
+            <CheckBox Content="Create System Restore Point Before Uninstall" 
+                      IsChecked="{Binding CreateRestorePoint}"
+                      Foreground="{StaticResource WhiteBrush}" />
+        </StackPanel>
+
+        <!-- Show Hidden Programs -->
+        <StackPanel Grid.Row="4" Margin="0,0,0,20">
+            <CheckBox Content="Show Hidden Programs" 
+                      IsChecked="{Binding ShowHiddenPrograms}"
+                      Foreground="{StaticResource WhiteBrush}" />
+        </StackPanel>
+    </Grid>
+</Page>
