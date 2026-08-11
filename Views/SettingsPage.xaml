@@ -20,10 +20,11 @@
             <TextBlock Text="Language" FontWeight="Bold" Margin="0,0,0,10" />
             <ComboBox ItemsSource="{Binding AvailableLanguages}" 
                       SelectedItem="{Binding SelectedLanguage}"
-                      Padding="10"
                       Height="35"
                       Background="{StaticResource CardBrush}"
-                      Foreground="{StaticResource WhiteBrush}" />
+                      Foreground="{StaticResource WhiteBrush}"
+                      Padding="10"
+                      VerticalContentAlignment="Center" />
         </StackPanel>
 
         <!-- Auto Update -->
