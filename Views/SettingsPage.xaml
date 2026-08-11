@@ -23,8 +23,7 @@
                       Height="35"
                       Background="{StaticResource CardBrush}"
                       Foreground="{StaticResource WhiteBrush}"
-                      Padding="10"
-                      VerticalContentAlignment="Center" />
+                      Padding="10" />
         </StackPanel>
 
         <!-- Auto Update -->
