@@ -1,0 +1,46 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 8.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build Release
+      run: dotnet build -c Release
+
+    - name: Publish Self-Contained EXE
+      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+
+    - name: Upload EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: AynanayUninstaller-x64
+        path: bin/Release/net8.0-windows/win-x64/publish/AynanayUninstaller.exe
+        retention-days: 30
+
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: bin/Release/net8.0-windows/win-x64/publish/AynanayUninstaller.exe
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
