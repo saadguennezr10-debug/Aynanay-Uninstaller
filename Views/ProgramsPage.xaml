@@ -18,12 +18,12 @@
         <!-- Search Bar -->
         <TextBox Grid.Row="1" 
                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                 Placeholder="Search installed programs..."
-                 Padding="10"
                  Height="35"
                  Background="{StaticResource CardBrush}"
                  Foreground="{StaticResource WhiteBrush}"
-                 Margin="0,0,0,10" />
+                 Margin="0,0,0,10"
+                 Padding="10"
+                 VerticalContentAlignment="Center" />
 
         <!-- Programs DataGrid -->
         <DataGrid Grid.Row="2" 
@@ -54,10 +54,10 @@
                     Background="{StaticResource PrimaryRedBrush}" />
             <Button Content="Forced Uninstall" 
                     Padding="15,10"
+                    Margin="0,0,10,0"
                     Background="{StaticResource DangerRedBrush}" />
             <Button Content="Residual Scan" 
                     Padding="15,10"
-                    Margin="10,0,0,0"
                     Background="{StaticResource WarningBrush}" />
         </StackPanel>
     </Grid>
